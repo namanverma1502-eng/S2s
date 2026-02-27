@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 1rem;
+
+    /* Carnival night theme — dark indigo base with neon accents */
+    --background: 0.12 0.04 275;
+    --foreground: 0.96 0.01 280;
+    --card: 0.16 0.05 275;
+    --card-foreground: 0.96 0.01 280;
+    --popover: 0.18 0.05 275;
+    --popover-foreground: 0.96 0.01 280;
+
+    /* Primary: neon pink */
+    --primary: 0.72 0.26 350;
+    --primary-foreground: 0.98 0.01 280;
+
+    /* Secondary: golden yellow */
+    --secondary: 0.85 0.2 85;
+    --secondary-foreground: 0.12 0.04 275;
+
+    /* Muted */
+    --muted: 0.22 0.04 280;
+    --muted-foreground: 0.65 0.04 280;
+
+    /* Accent: neon cyan */
+    --accent: 0.78 0.18 195;
+    --accent-foreground: 0.12 0.04 275;
+
+    /* Destructive: neon red */
+    --destructive: 0.65 0.25 25;
+    --destructive-foreground: 0.98 0.01 280;
+
+    --border: 0.28 0.06 275;
+    --input: 0.22 0.06 275;
+    --ring: 0.72 0.26 350;
+
+    /* Chart colors (character colors) */
+    --chart-1: 0.62 0.22 260;  /* blue - Speed Runner */
+    --chart-2: 0.62 0.24 25;   /* red - Heavy Brawler */
+    --chart-3: 0.85 0.2 85;    /* yellow - Puzzle Genius */
+    --chart-4: 0.65 0.24 305;  /* purple - Trickster */
+    --chart-5: 0.72 0.26 350;  /* pink - accent */
+
+    --sidebar: 0.14 0.05 275;
+    --sidebar-foreground: 0.96 0.01 280;
+    --sidebar-primary: 0.72 0.26 350;
+    --sidebar-primary-foreground: 0.98 0.01 280;
+    --sidebar-accent: 0.22 0.04 280;
+    --sidebar-accent-foreground: 0.96 0.01 280;
+    --sidebar-border: 0.28 0.06 275;
+    --sidebar-ring: 0.72 0.26 350;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Nunito', sans-serif;
+    overflow: hidden;
+  }
+}
+
+/* Carnival animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { filter: brightness(1) drop-shadow(0 0 8px currentColor); }
+  50% { filter: brightness(1.3) drop-shadow(0 0 20px currentColor); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes carnival-entrance {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes flag-wave {
+  0%, 100% { transform: skewX(-2deg); }
+  50% { transform: skewX(2deg); }
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.6); }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.15); }
+  75% { transform: scale(0.92); }
+  100% { transform: scale(1); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-carnival-entrance {
+  animation: carnival-entrance 0.5s ease-out forwards;
+}
+
+.animate-flag-wave {
+  animation: flag-wave 2s ease-in-out infinite;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Neon text glow effects */
+.text-neon-pink {
+  color: oklch(0.72 0.26 350);
+  text-shadow: 0 0 10px oklch(0.72 0.26 350 / 0.8), 0 0 30px oklch(0.72 0.26 350 / 0.4);
+}
+
+.text-neon-gold {
+  color: oklch(0.85 0.2 85);
+  text-shadow: 0 0 10px oklch(0.85 0.2 85 / 0.8), 0 0 30px oklch(0.85 0.2 85 / 0.4);
+}
+
+.text-neon-cyan {
+  color: oklch(0.78 0.18 195);
+  text-shadow: 0 0 10px oklch(0.78 0.18 195 / 0.8), 0 0 30px oklch(0.78 0.18 195 / 0.4);
+}
+
+/* Carnival button styles */
+.btn-carnival {
+  font-family: 'Fredoka One', cursive;
+  letter-spacing: 0.05em;
+  transition: all 0.15s ease;
+}
+
+.btn-carnival:hover {
+  transform: scale(1.05) translateY(-2px);
+  filter: brightness(1.2);
+}
+
+.btn-carnival:active {
+  transform: scale(0.97) translateY(0);
+}
+
+/* Card glass effect */
+.card-glass {
+  background: oklch(0.16 0.05 275 / 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid oklch(0.72 0.26 350 / 0.3);
+  box-shadow: 0 0 30px oklch(0.72 0.26 350 / 0.1), inset 0 1px 0 oklch(1 0 0 / 0.05);
+}
+
+/* Game canvas container */
+.game-canvas-wrapper {
+  position: relative;
+  user-select: none;
+  outline: none;
+}
+
+/* Scrollbar hiding for game */
+.game-screen {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
